@@ -2,7 +2,16 @@
 `Arne Lavaert & Thomas Vantricht`
 `3MCT Smart tech & AI`
 
-This Project lets a car drive between two lines of tape and stop at a red traffic light. It will start driving again when the light turns green.
+This Project contains three scripts:
+1. Let a car drive between two lines of tape `lane_follower.py`
+2. Detect traffic lights and change a LED to the detected color `traffic_light_detector.py`
+3. Combination of previous scripts, by doing the traffic light detection on a separate thread `lane_follower_and_detection_threaded.py`
+
+The original idea was to drive between the lines and stop the car when a red traffic light is detected.
+When the light turns green again, the car may continue to follow the lines.
+Since the Raspberry Pi cannot handle these two tasks together, the lane following and traffic light detection where 
+developed to work separately.
+
 
 Manual to install this project on your own raspberry pi.
 
@@ -52,27 +61,23 @@ This manual requires a (clean) installed Raspberry Pi with a wireless internet c
     $ python3 --version
     > Python 3.x.x
     ```
-4. Install pip3
+4. Install pip3 and git
     ```bash
-    $ sudo apt install python3-pip
+    $ sudo apt install python3-pip git
     ```
-5. Install git
-    ```bash
-    $ sudo apt install git
-    ```
-6. Clone our github repository
+5. Clone our github repository
     ```bash
     $ git clone <INSERT_FINAL_LINK_GIT.git>
     ```
-7. Go the the repo director
+6. Go the the repo director
     ```bash
     $ cd ./self-driving-car
     ```
-8. Install all required pip packages
+7. Install all required pip packages
     ```bash
     $ pip3 install -r requirements.txt
     ```
-9. Start the script
+8. Start the script
     ```bash
     $ python3 app.py
     ```
@@ -82,7 +87,7 @@ This manual requires a (clean) installed Raspberry Pi with a wireless internet c
 1. Remove the front wheels from the car
 2. Add servo motor with 3D printed bracket
 3. Add a wheel to the servo motor.
-4. Wire up
+4. Wire the Raspberry Pi
 
 ### Wiring diagram
 - Wire the Raspberry Pi, servo motor and RGB Led like the schema below.
@@ -108,9 +113,9 @@ This manual requires a (clean) installed Raspberry Pi with a wireless internet c
     ```bash
     $ cd self-driving-car && python3 traffic_light_detector.py
     ```
-5. Wait for the program to start. (It can take up to 2 minutes)
+5. Wait for the program to start, tt can take up to 2 minutes.
 6. Stop the program by hitting `Ctrl + c`
 7. Start the lane following script by following command
     ```bash
-    $ python3 lane_follower_and_detection_threaded.py
+    $ python3 lane_follower.py
     ```
